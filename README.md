@@ -1,4 +1,5 @@
 # morgan-mongo
+[![Build Status](https://travis-ci.com/pmstss/morgan-mongo.svg?branch=master)](https://travis-ci.com/pmstss/morgan-mongo) [![Known Vulnerabilities](https://snyk.io/test/github/pmstss/morgan-mongo/badge.svg?targetFile=package.json)](https://snyk.io/test/github/pmstss/morgan-mongo?targetFile=package.json)
 
 Node.js HTTP request logger middleware for [Express](https://github.com/expressjs/express) 
 with [MongoDB](https://www.mongodb.com) as storage; [morgan](https://github.com/expressjs/morgan) and [Mongoose](https://github.com/Automattic/mongoose) based.
@@ -11,6 +12,8 @@ Highly configurable output with meaningful defaults; support for standart mongoo
 
 ### Installation
     npm install morgan-mongo --save
+
+[![NPM](https://nodei.co/npm/morgan-mongo.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/morgan-mongo/)
 
 ### Usage
 
@@ -57,7 +60,12 @@ export type OptionsType = {
     customMapping?: MappingDescriptor;
 };
 ```
-Please have a look in [tests](test/morgan-mongo.spec.ts) for now for usage samples.
+`connectionString`: mongo connection string, defaults to `mongodb://localhost:27017/morgan-mongo`. 
+If you use MongoDB Atlas (i.e. connection string with `mongodb+srv` protocol schema), `dbName` 
+must be additionally provided in `connectionOptions`.
+
+Usage samples of other options can be found in [tests](test/morgan-mongo.spec.ts). 
+MappingDescriptor is described below. 
 
 #### connectionOptions
 mongoose [ConnectionOptions](https://mongoosejs.com/docs/api.html#mongoose_Mongoose-connect)
@@ -67,6 +75,47 @@ mongoose [SchemaOptions](https://mongoosejs.com/docs/api.html#schema_Schema)
 
 #### morganOptions
 morgan [Options](https://github.com/expressjs/morgan#options)
+
+### Custom mappings
+
+##### MappingDescriptor
+Describes mappings from morgan tokens to properties in mongo document:
+```TypeScript
+export type MappingDescriptor = { 
+    [tokenName: string]: MappingMeta<any> 
+};
+```
+
+Default mappings are described by [defaultMappingDescriptor](src/default-mapping-descriptor.ts).
+
+##### MappingMeta
+Describes mapping of single morgan token to property in mongo document:
+```TypeScript
+export type MappingMeta<T> = {
+    prop: string,
+    type?: typeof mongoose.SchemaType | mongoose.SchemaDefinition,
+    params?: any[],
+    handler?: Handler<T>
+};
+```
+* `prop`: mongo document property name
+* `type`: mongoose SchemaType. If `handler` is not provided explicitly, default type handler will be used to 
+handle String, Number, Dates and [custom user agent type](src/default-mapping-descriptor.ts). If type is omitted 
+token value will be unchanged string. 
+* `params`: morgan token parameters. In case of having multiple same tokens with different parameters 
+to keep uniqueness of keys in MappingDescriptor, parameters can be passed as part of token name there:
+```TypeScript
+ {
+    'req:cache-control': {
+        prop: 'cacheControl' // maps 'Cache-Control' request header to cacheControl property in mongo document
+    },
+    'req:content-type': {
+        prop: 'contentType' // maps 'Content-Type' request header to contentType property in mongo document
+    }
+
+ }
+ ```
+* `handler`: optional custom processing of token value (string) to any desired output type
 
 ### Contribution
 Feel free to contribute by opening issues with any questions, bug reports and feature requests.
