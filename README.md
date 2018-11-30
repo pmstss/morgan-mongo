@@ -10,6 +10,8 @@ Built-in support for string, numeric, date and user agent tokens parsing.
 
 Highly configurable output with meaningful defaults; support for standart mongoose and morgan options.  
 
+[Output Live Demo](https://morgan-mongo.herokuapp.com)
+
 ### Installation
     npm install morgan-mongo --save
 
