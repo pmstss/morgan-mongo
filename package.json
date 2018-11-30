@@ -48,5 +48,8 @@
     "mongoose": "^5.3.14",
     "morgan": "^1.9.1",
     "useragent": "^2.3.0"
-  }
+  },
+  "engines": {
+    "node": "10.x"
+  } 
 }
