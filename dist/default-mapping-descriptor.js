@@ -29,6 +29,9 @@ exports.defaultMappingDescriptor = {
     'remote-user': {
         prop: 'remoteUser',
     },
+    'req:x-forwarded-for': {
+        prop: 'forwardAddr',
+    },
     'response-time': {
         prop: 'responseTime',
         type: mongoose.Schema.Types.Number,
