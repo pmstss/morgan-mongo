@@ -1,6 +1,6 @@
 {
   "name": "morgan-mongo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js HTTP request logger middleware for Express with MongoDB as storage; morgan and Mongoose based",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -48,6 +48,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.3.14",
+    "@types/mongoose": "^5.3.1",
     "morgan": "^1.9.1",
     "useragent": "^2.3.0"
   },
