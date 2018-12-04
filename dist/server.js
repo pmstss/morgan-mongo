@@ -9,9 +9,9 @@ exports.app.set('port', process.env.PORT || 3001);
 exports.app.set('json spaces', 4);
 exports.app.use(logger('dev'));
 exports.app.use(morgan_mongo_1.morganMongoMiddleware({
-// connectionString: process.env.MONGO_MORGAN_URI
+    connectionString: process.env.MONGO_MORGAN_URI || 'mongodb://localhost:27017/morgan-mongo'
 }, {
-// dbName: process.env.MONGO_MORGAN_DB
+    dbName: process.env.MONGO_MORGAN_DB || 'morgan-mongo'
 }, {
     capped: {
         size: 1024 * 1024,

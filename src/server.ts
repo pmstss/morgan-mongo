@@ -11,10 +11,10 @@ app.use(logger('dev'));
 
 app.use(morganMongoMiddleware(
     {
-        // connectionString: process.env.MONGO_MORGAN_URI
+        connectionString: process.env.MONGO_MORGAN_URI || 'mongodb://localhost:27017/morgan-mongo'
     },
     {
-        // dbName: process.env.MONGO_MORGAN_DB
+        dbName: process.env.MONGO_MORGAN_DB || 'morgan-mongo'
     },
     {
         capped: {
