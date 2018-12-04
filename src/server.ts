@@ -11,17 +11,17 @@ app.use(logger('dev'));
 
 app.use(morganMongoMiddleware(
     {
-        connectionString: process.env.MONGO_URI_OMS
+        connectionString: process.env.MONGO_MORGAN_URI
     },
     {
-        dbName: process.env.MONGO_DB_MORGAN
+        dbName: process.env.MONGO_MORGAN_DB
     },
     {
         capped: {
             size: 1024 * 1024,
             max: 5 * 1024
         },
-        collection: 'request-logs'
+        collection: process.env.MONGO_MORGAN_COLLECTION || 'request-logs'
     }
 ));
 
