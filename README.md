@@ -27,6 +27,7 @@ app.use(morganMongoMiddleware());
 ```
 
 ### Output sample
+<details><summary>JSON sample</summary>
 ```js
 {
     "_id" : ObjectId("5c012d5375bad213309ad4c3"),
@@ -46,6 +47,7 @@ app.use(morganMongoMiddleware());
     "url" : "/quotes?date=2018-11-28"
 }
 ```
+</details>
 
 ### API
 
