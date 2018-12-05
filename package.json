@@ -1,15 +1,13 @@
 {
   "name": "morgan-mongo",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Node.js HTTP request logger middleware for Express with MongoDB as storage; morgan and Mongoose based",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run lint && tsc",
     "lint": "tslint -c tslint.json --project tsconfig.json",
-    "test": "./node_modules/.bin/mocha -r ts-node/register test/**/*.spec.ts",
-    "postinstall": "npm run build",
-    "start": "node dist/server.js"
+    "test": "./node_modules/.bin/mocha -r ts-node/register test/**/*.spec.ts"
   },
   "repository": {
     "type": "git",
@@ -30,6 +28,11 @@
     "url": "https://github.com/pmstss/morgan-mongo/issues"
   },
   "homepage": "https://github.com/pmstss/morgan-mongo#readme",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist/"
+  ],
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/express": "^4.16.0",
@@ -46,13 +49,13 @@
     "typescript": "^3.1.6"
   },
   "dependencies": {
+    "@types/mongoose": "^5.3.1",
     "express": "^4.16.4",
     "mongoose": "^5.3.14",
-    "@types/mongoose": "^5.3.1",
     "morgan": "^1.9.1",
     "useragent": "^2.3.0"
   },
   "engines": {
     "node": "10.x"
-  } 
+  }
 }

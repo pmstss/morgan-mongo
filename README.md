@@ -67,7 +67,7 @@ If you use MongoDB Atlas (i.e. connection string with `mongodb+srv` protocol sch
 must be additionally provided in `connectionOptions`.
 
 Usage samples of other options can be found in [tests](test/morgan-mongo.spec.ts). 
-MappingDescriptor is described below. 
+MappingDescriptor is described in [Custom Mapping](README.md#custom-mappings) section below.. 
 
 #### connectionOptions
 mongoose [ConnectionOptions](https://mongoosejs.com/docs/api.html#mongoose_Mongoose-connect)
@@ -79,6 +79,11 @@ mongoose [SchemaOptions](https://mongoosejs.com/docs/api.html#schema_Schema)
 morgan [Options](https://github.com/expressjs/morgan#options)
 
 ### Custom mappings
+
+<details>
+<summary>View advanced configuration options</summary>
+
+This section is subject for improvements. Feel free to open issus in case of any questions.
 
 ##### MappingDescriptor
 Describes mappings from morgan tokens to properties in mongo document:
@@ -119,8 +124,10 @@ to keep uniqueness of keys in MappingDescriptor, parameters can be passed as par
  ```
 * `handler`: optional custom processing of token value (string) to any desired output type
 
+</details>
+
 ### Contribution
-Feel free to contribute by opening issues with any questions, bug reports and feature requests.
+Feel free to contribute by opening issues with any questions, bug reports or feature requests.
 
 ### Credits
 [mongoose-morgan](https://github.com/nemanjapetrovic/mongoose-morgan) - entries are not parsed but stored in mongo as strings.
